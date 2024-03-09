@@ -7,6 +7,7 @@ import uuid
 from datetime import datetime, date, time
 import models
 
+
 class BaseModel:
     """
     Base
@@ -30,12 +31,16 @@ class BaseModel:
         models.storage.new(self)
 
     def save(self):
-        """Update the updated_at attribute with the current datetime"""
+        """
+        Update the updated_at attribute with the current datetime
+        """
         updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """Returns a dict representation of the instance for serialization"""
+        """
+        Returns a dict representation of the instance for serialization
+        """
         instance_dict = self.__dict__.copy()
         instance_dict['__class__'] = self.__class__.__name__
         instance_dict['created_at'] = self.created_at.isoformat()
