@@ -9,22 +9,30 @@ from models.base_model import BaseModel
 
 
 class FileStorage:
-    """creates FileStorage"""
+    """
+    creates FileStorage
+    """
     __file_path = "file.json"
     __objects = {}
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """
+        sets in __objects the obj with key <obj class name>.id
+        """
         obj_cls_name = obj.__class__.__name__
         key = "{}.{}".format(obj_cls_name, obj.id)
         FileStorage.__objects[key] = obj
 
     def all(self):
-        """returns the stored dictionary"""
+        """
+        returns the stored dictionary
+        """
         return FileStorage.__objects
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """
+        serializes __objects to the JSON file (path: __file_path)
+        """
         all_objs = FileStorage.__objects
         obj_dict = {}
 
@@ -52,4 +60,3 @@ class FileStorage:
                         FileStorage.__objects[key] = instance
                 except Exception:
                     pass
-
