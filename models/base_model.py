@@ -5,6 +5,7 @@ creates a class base which is the heart of the AirBnb clone
 
 import uuid
 from datetime import datetime, date, time
+import models
 
 class BaseModel:
     """
@@ -26,10 +27,12 @@ class BaseModel:
                     setattr(self, key, datetime.strptime(value, time_format))
                 else:
                     setattr(self, key, value)
+        models.storage.new(self)
 
     def save(self):
         """Update the updated_at attribute with the current datetime"""
         updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dict representation of the instance for serialization"""
